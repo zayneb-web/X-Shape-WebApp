@@ -3,34 +3,53 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+class User 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message:"firstNameUser is required")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstNameUser = null;
 
+    #[Assert\NotBlank(message:"LastName is required")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $LastName = null;
+
+    #[Assert\NotBlank(message:"emailUser is required")]
+
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $emailUser = null;
 
+    #[Assert\NotBlank(message:"password is required")]
+
+
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    #[Assert\NotBlank(message:"NumTelephoneUser is required")]
+
 
     #[ORM\Column]
     private ?int $NumTelephoneUser = null;
 
+    #[Assert\NotBlank(message:"cinUser is required")]
+
+
     #[ORM\Column(nullable: true)]
     private ?int $cinUser = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Role $Role = null;
 
     public function getId(): ?int
     {
@@ -105,6 +124,18 @@ class User
     public function setCinUser(?int $cinUser): self
     {
         $this->cinUser = $cinUser;
+
+        return $this;
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->Role;
+    }
+
+    public function setRole(?Role $Role): self
+    {
+        $this->Role = $Role;
 
         return $this;
     }

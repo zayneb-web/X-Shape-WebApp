@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+ {% block body %}
+
+ <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top :150px">
+ <div class="col-lg-7">
+ <div class="card">
+ <div class="card-body">
+ <h5 class="card-title"> Liste des user </h5>
+
+ <table class="table table-striped">
+ <thead>
+ <th>Id</th>
+ <th>FirstName</th>
+ <th>LastName</th>
+ <th>Role</th>
+ <th>Emmail</th>
+ <th>Password</th>
+ <th>TelephoneUser</th>
+ <th>CinUser</th>
+ <th>action</th>
+ 
+
+ </tr>
+ </thead>
+ {% for c in User %}
+ <tr>
+ <td> {{c.Id}}  </td>
+ <td> {{c.firstNameUser}}  </td>
+ <td> {{c.LastName}} </td>
+ <td> {{c.Role.TypeUser}} </td>
+ <td> {{c.emailUser}} </td>
+ <td> {{c.password}} </td>
+ <td> {{c.NumTelephoneUser}} </td>
+ <td> {{c.cinUser}} </td>
+
+
+
+ <td><a href="{{path('s',{'id':c.id} )}}">Delete</a></td>  
+  <td><a href="{{path('u',{'id':c.id} )}}">update</a></td> 
+
+ </tr>
+ {% endfor %}
+</tbody>
+  </table>
+ 
+    <a href="{{path('a')}}">ajouter produit</a>
+   </div>
+    </div>
+
+
+
+ {% endblock %}
