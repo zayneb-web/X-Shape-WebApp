@@ -18,7 +18,8 @@
  <th>Password</th>
  <th>TelephoneUser</th>
  <th>CinUser</th>
- <th>action</th>
+ <th>supprimer</th>
+<th>update</th>
  
 
  </tr>
@@ -35,16 +36,18 @@
  <td> {{c.cinUser}} </td>
 
 
+<td><a href="{{path('s',{'id':c.id} )}}">
+          <button  type="button" class="btn btn-outline-danger" onclick="return confirm('Vous êtes sûr de supprimer cet utilisateur?');">
+ Supprimer</button></a></td>
+  <td><a class="btn btn-outline-success" href="{{path('u',{'id':c.id})}}" role="button">update</a></td>
 
- <td><a href="{{path('s',{'id':c.id} )}}">Delete</a></td>  
-  <td><a href="{{path('u',{'id':c.id} )}}">update</a></td> 
 
  </tr>
  {% endfor %}
 </tbody>
   </table>
- 
-    <a href="{{path('a')}}">ajouter produit</a>
+ <td><a class="btn btn-outline-success" href="{{path('a')}}" role="button">ajouter utilisateur</a></td>
+    
    </div>
     </div>
 
